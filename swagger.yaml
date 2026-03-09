@@ -91,3 +91,39 @@ paths:
                       id:
                         type: string
 
+  /gates/{gateCode}:
+    get:
+      tags:
+      - "gates"
+      summary: "returns the information on the gate specified"
+      produces:
+      - "application/json"
+      parameters:
+        - in: path
+          name: gateCode
+          schema:
+            type: string
+          required: true
+          description: the code of the gate on which teh information is required, a three letter string such as 'ALT'
+      responses:
+        200:
+          description: the information on the gate
+          schema:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              connections:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    hu:
+                      type: integer
+                    id:
+                      type: string
+        400:
+          description: the gate specified does not exist
+
