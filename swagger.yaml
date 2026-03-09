@@ -150,19 +150,30 @@ paths:
             type: boolean
           description: whether the round trip distance is required
       responses:
-         200:
+        200:
           description: the information on the gate
           schema:
             oneOf:
-              - type: object
-                properties:
-                  outboundDistance:
-                    type: integer
-              - type: object
-                properties:
-                  outboundDistance:
-                    type: integer
-                  returnDistance:
-                    type: integer
+              - $ref: "#/definitions/OneWayJourneyLength"
+              - $ref: "#/definitions/ReturnJourneyLength"
+        400:
+          description: one or more gate codes are incorrect
+
+definitions:
+  OneWayJourneyLength:
+    type: object
+    properties:
+      outboundDistance:
+        type: integer
+  ReturnJourneyLength:
+    type: object
+    properties:
+      outboundDistance:
+        type: integer
+      returnDistance:
+        type: integer
+
+
+  
 
 
