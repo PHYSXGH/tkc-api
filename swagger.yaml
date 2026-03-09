@@ -30,19 +30,19 @@ paths:
           schema:
             type: float
           required: true
-          description: Numeric ID of the user to get
+          description: numeric ID of the user to get
         - in: query
           name: passengers
           schema:
             type: integer
           required: true
-          description: The number of apssengers wishing to travel
+          description: the number of apssengers wishing to travel
         - in: query
           name: parking
           schema:
             type: integer
           required: true
-          description: The number of days for which the vehicle needs to be parked
+          description: the number of days for which the vehicle needs to be parked
       
       responses:
         200:
@@ -52,13 +52,10 @@ paths:
             properties:
               personalTransportCost:
                 type: number
-                description: The user ID.
               hstcTransportCost:
                 type: number
-                description: The user name.
               lowestTransportCost:
                 type: number
-                description: The user name.
         400:
           description: the input parameters are missing or incorrectly formatted
 
@@ -104,7 +101,7 @@ paths:
           schema:
             type: string
           required: true
-          description: the code of the gate on which teh information is required, a three letter string such as 'ALT'
+          description: the code of the gate on which the information is required, a three letter string such as 'ALT'
       responses:
         200:
           description: the information on the gate
@@ -126,4 +123,46 @@ paths:
                       type: string
         400:
           description: the gate specified does not exist
+  
+  /gates/{gateCode}/to/{targetGateCode}:
+    get:
+      tags:
+      - "gates"
+      summary: "returns the information on the gate specified"
+      produces:
+      - "application/json"
+      parameters:
+        - in: path
+          name: gateCode
+          schema:
+            type: string
+          required: true
+          description: the gate code of the start gate
+        - in: path
+          name: targetGateCode
+          schema:
+            type: string
+          required: true
+          description: the gate code of the destination gate
+        - in: query
+          name: round_trip
+          schema:
+            type: boolean
+          description: whether the round trip distance is required
+      responses:
+         200:
+          description: the information on the gate
+          schema:
+            oneOf:
+              - type: object
+                properties:
+                  outboundDistance:
+                    type: integer
+              - type: object
+                properties:
+                  outboundDistance:
+                    type: integer
+                  returnDistance:
+                    type: integer
+
 
