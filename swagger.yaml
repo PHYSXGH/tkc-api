@@ -13,6 +13,7 @@ tags:
   description: "If you wish to make trips between our gates"
 schemes:
 - "https"
+
 paths:
   /transport/{distance}:
     get:
@@ -34,26 +35,31 @@ paths:
           name: passengers
           schema:
             type: integer
+          required: true
           description: The number of apssengers wishing to travel
         - in: query
           name: parking
           schema:
             type: integer
+          required: true
           description: The number of days for which the vehicle needs to be parked
+      
       responses:
         200:
-        description: the prices have successfully been calculated
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                personalTransportCost:
-                  type: number
-                  description: The user ID.
-                hstcTransportCost:
-                  type: number
-                  description: The user name.
-                lowestTransportCost:
-                  type: number
-                  description: The user name.
+          description: the prices have successfully been calculated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  personalTransportCost:
+                    type: number
+                    description: The user ID.
+                  hstcTransportCost:
+                    type: number
+                    description: The user name.
+                  lowestTransportCost:
+                    type: number
+                    description: The user name.
+        400:
+          description: the input parameters are missing or incorrectly formatted
