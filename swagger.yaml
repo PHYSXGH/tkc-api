@@ -47,19 +47,47 @@ paths:
       responses:
         200:
           description: the prices have successfully been calculated
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  personalTransportCost:
-                    type: number
-                    description: The user ID.
-                  hstcTransportCost:
-                    type: number
-                    description: The user name.
-                  lowestTransportCost:
-                    type: number
-                    description: The user name.
+          schema:
+            type: object
+            properties:
+              personalTransportCost:
+                type: number
+                description: The user ID.
+              hstcTransportCost:
+                type: number
+                description: The user name.
+              lowestTransportCost:
+                type: number
+                description: The user name.
         400:
           description: the input parameters are missing or incorrectly formatted
+
+  /gates:
+    get:
+      tags:
+      - "gates"
+      summary: "returns the list of all gates with their information"
+      produces:
+      - "application/json"
+      responses:
+        200:
+          description: the information on all gates
+          schema:
+            type: array
+            items:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+                connections:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      hu:
+                        type: integer
+                      id:
+                        type: string
+
