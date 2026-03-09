@@ -128,7 +128,7 @@ paths:
     get:
       tags:
       - "gates"
-      summary: "returns the information on the gate specified"
+      summary: "returns the distance of the two gates, optionally in both ways"
       produces:
       - "application/json"
       parameters:
@@ -148,7 +148,7 @@ paths:
           name: round_trip
           schema:
             type: boolean
-          description: whether the round trip distance is required
+          description: whether the return trip distance is required
       responses:
         200:
           description: the information on the gate
