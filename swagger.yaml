@@ -153,7 +153,7 @@ paths:
         200:
           description: the information on the gate
           schema:
-            oneOf:
+            allOf:
               - $ref: "#/definitions/OneWayJourneyLength"
               - $ref: "#/definitions/ReturnJourneyLength"
         400:
