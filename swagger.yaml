@@ -151,7 +151,7 @@ paths:
           description: whether the return trip distance is required
       responses:
         200:
-          description: the information on the gate
+          description: the information on the gate, while the ReturnJourneyLength is optional and is only present when round_trip == True in the query string
           schema:
             allOf:
               - $ref: "#/definitions/OneWayJourneyLength"
